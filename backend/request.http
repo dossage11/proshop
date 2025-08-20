@@ -1,0 +1,72 @@
+GET http://localhost:3001/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmU4MDRiMWQxNjY4Zjk4Mjc5OTdkZiIsImlhdCI6MTc1NDA5NjIwOCwiZXhwIjoxNzU2Njg4MjA4fQ.Lfm0bosRXpXSynvvdTOhtIwqbuB0g8VA2bHaYSdyCnE
+###
+
+GET http://localhost:3001/api/products/6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmU4MDRiMWQxNjY4Zjk4Mjc5OTdkZiIsImlhdCI6MTc1MzQ0Mzg2MSwiZXhwIjoxNzU2MDM1ODYxfQ.L57JpByn6YZ2bmwu5vAdRHwop1JjUcHgAEWRFXtpK6M
+
+###
+
+POST http://localhost:3001/api/auth/login
+
+
+
+{
+    "email":"admin@example.com",
+    "password":"123456"
+}
+
+###
+    
+PATCH http://localhost:3001/api/user/update/686e804b1d1668f9827997df
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmU4MDRiMWQxNjY4Zjk4Mjc5OTdkZiIsImlhdCI6MTc1NDIyMzIyMCwiZXhwIjoxNzU2ODE1MjIwfQ.up8CCRyXnxTH0YUaMcnyVDpZdRjezTXQ34LYqt9PNbY
+
+
+{
+     "name":"Admin",
+    "password":"123456",
+   "email": "johnpaul@gmail.com",
+    "isAdmin": true,
+    
+    
+    
+}
+
+
+###
+
+POST http://localhost:3001/api/auth/registration
+
+{
+    "name":"Gian",
+    "password":"giansaasas",
+    "email": "Gian@gmail.com",
+    "isAdmin": true
+}
+
+###
+
+GET http://localhost:3001/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmU4MDRiMWQxNjY4Zjk4Mjc5OTdkZiIsImlhdCI6MTc1MjIzMDQwMSwiZXhwIjoxNzU0ODIyNDAxfQ.OZ4EzPyGuOJrfsaG_iwg2RYNLNkSoyMfUZC1p7iExKU
+###
+DELETE http://localhost:3001/api/user/688e2600ec12d5276ce0cdeb
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmU4MDRiMWQxNjY4Zjk4Mjc5OTdkZiIsImlhdCI6MTc1MjIzMDQwMSwiZXhwIjoxNzU0ODIyNDAxfQ.OZ4EzPyGuOJrfsaG_iwg2RYNLNkSoyMfUZC1p7iExKU
+###
+GET http://localhost:3001/api/user/688ec476d1a9d3162d560514
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmU4MDRiMWQxNjY4Zjk4Mjc5OTdkZiIsImlhdCI6MTc1MjIzMDQwMSwiZXhwIjoxNzU0ODIyNDAxfQ.OZ4EzPyGuOJrfsaG_iwg2RYNLNkSoyMfUZC1p7iExKU
+###
+DELETE http://localhost:3001/api/product/686a451ee179bbed4946e6c7
+
+###
+PATCH http://localhost:3001/api/user/update/688ec476d1a9d3162d560514
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmU4MDRiMWQxNjY4Zjk4Mjc5OTdkZiIsImlhdCI6MTc1MjIzMDQwMSwiZXhwIjoxNzU0ODIyNDAxfQ.OZ4EzPyGuOJrfsaG_iwg2RYNLNkSoyMfUZC1p7iExKU
+
+{
+   
+  
+  "name": "John Paul Pabillore",
+    "email": "lilet@gmail.com",
+    "password":"P@ul096411",
+    "isAdmin": true
+    
+}
