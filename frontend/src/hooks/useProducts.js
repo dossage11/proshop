@@ -43,3 +43,24 @@ const {mutate:deleteProduct,isLoading:isDeleting} = useMutation({
 return {deleteProduct,isDeleting}
 
 }
+
+
+// export const addProduct = () => {
+//     const queryClient = useQueryClient()
+
+//     const {mutate:addProduct,isLoading:isAdding} = useMutation({
+
+//         mutationFn:(product)=>Products.addProduct(product),
+//         onSuccess:()=>{
+
+//             toast.success(`Product successfully added`);
+//             queryClient.invalidateQueries({
+//                 queryKey:['products']
+//             })
+//         },
+//         onError:(err)=>toast.error(err.message)
+//     })
+
+//     return {addProduct,isAdding}
+
+// }

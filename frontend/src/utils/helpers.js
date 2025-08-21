@@ -1,3 +1,5 @@
+import { countryCodeToName } from "./enum";
+
 export function formatCurrency(value) {
   return new Intl.NumberFormat("en", {
     style: "currency",
@@ -34,3 +36,7 @@ export function idString(str){
 
  return lowerString
 }
+
+export const getCountryCodeByName = (countryName) => {
+  return Object.entries(countryCodeToName).find(([code, name]) => name === countryName)?.[0] || '';
+};

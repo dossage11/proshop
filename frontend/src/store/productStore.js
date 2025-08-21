@@ -10,6 +10,7 @@ const useProductStore = create(
       products: [], // This is just the default/initial value
       totalCartPrice:0,
       selectedItemList:[],
+      shippingAddress: [],
       addProduct: (product) => {
         set((state) => {
           const updateProducts = [...state.products, product];
@@ -20,18 +21,24 @@ const useProductStore = create(
         });
       },
       
-      removeProduct: (name) => {
-        set((state) => {
-          const product = state.products.filter((p) => p.name !== name);
-          const selectedItem = state.selectedItemList.filter((p) => p.name !== name);
-          
-          if (product && selectedItem) {
-            toast.success(`${name} Remove from cart`);
-          }
-          return { products: product,selectedItemList:selectedItem };
-        });
-      },
-      
+    
+removeProduct: (name) => {
+  const { products } = get(); // Access current state
+  const itemExists = products.some((p) => p.name === name);
+  
+  if (!itemExists) {
+    toast.error('Item not found');
+    return;
+  }
+
+  set((state) => ({
+    products: state.products.filter((p) => p.name !== name),
+    selectedItemList: state.selectedItemList.filter((p) => p.name !== name)
+  }));
+  
+  toast.success(`${name} removed from cart`);
+},
+              
       increaseQuantity: (name) => {
 
       
@@ -81,6 +88,13 @@ const useProductStore = create(
         }
       });
   },
+ AddShippingAddress: (address) => {
+  if (!address) return;
+  
+  set(() => ({ shippingAddress: [address] }));
+  // Optionally, you can show a success message
+  toast.success('Shipping address updated');
+},
 
 
   
@@ -125,7 +139,8 @@ const useProductStore = create(
       // Optional: you can specify which parts of the state to persist
        partialize: (state) => ({ 
         products: state.products,
-        selectedItemList: state.selectedItemList 
+        selectedItemList: state.selectedItemList,
+        shippingAddress: state.shippingAddress 
       }),
     }
   )

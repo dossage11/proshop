@@ -4,7 +4,29 @@ import { useForm } from 'react-hook-form'
 import z from 'zod'
 import { Countries, countryCodeToName } from '../../utils/enum'
 import { zodResolver } from '@hookform/resolvers/zod'
+import useProductStore from '../../store/productStore';
+import { getCountryCodeByName } from '../../utils/helpers'
+import CheckoutSteps from '../../components/CheckoutSteps'
 function ShippingDetails() {
+ 
+
+   const {AddShippingAddress,shippingAddress} = useProductStore();
+
+   const defaultShippingValues = shippingAddress?.[0] ? {
+  address: shippingAddress[0].address || '',
+  city: shippingAddress[0].city || '',
+  postalCode: shippingAddress[0].postalCode || '',
+  country: getCountryCodeByName(shippingAddress[0].country) || '' 
+} : {
+  address: '',
+  city: '',
+  postalCode: '',
+  country: ''
+};
+
+
+
+ 
 
 
     const shippingSchema = z.object({
@@ -15,18 +37,21 @@ function ShippingDetails() {
         .pipe(z.enum(Countries))
     })
 
-const {register,handleSubmit,formState:{errors}}= useForm({resolver:zodResolver(shippingSchema)})
+const {register,handleSubmit,formState:{errors}}= useForm({resolver:zodResolver(shippingSchema),defaultValues:defaultShippingValues})
+
+
 
  
 function handleShippingInformation (data){
 
- console.log(data);
+AddShippingAddress(data);
  
 }
 
 
   return (
    <Container className="mt-5">
+    <CheckoutSteps step1 step2 />
       <Row className="justify-content-center">
         <Col md={6}>
           <Card>
@@ -93,18 +118,13 @@ function handleShippingInformation (data){
                     
                   >
                     <option value="">Select your country</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="GB">United Kingdom</option>
-                    <option value="AU">Australia</option>
-                    <option value="DE">Germany</option>
-                    <option value="FR">France</option>
-                    <option value="JP">Japan</option>
-                    <option value="PH">Philippines</option>
-                    <option value="SG">Singapore</option>
-                    <option value="IN">India</option>
-                    <option value="BR">Brazil</option>
-                    <option value="MX">Mexico</option>
+
+                    {Object.entries(countryCodeToName).map(([code, name]) => (
+                      <option key={code} value={code}>
+                        {name}
+                      </option>
+                    ))}
+                  
                   </Form.Select>
 
                      {errors.country && (
@@ -119,7 +139,7 @@ function handleShippingInformation (data){
                     type='submit'
                     className="mt-3"
                   >
-                    Submit Shipping Information
+                   Continue
                   </Button>
                 </div>
               </Form>
