@@ -32,7 +32,7 @@ function CartItem() {
   const isNotEmpty = selectedItemList.length ===0
 
 
- console.log(isNotEmpty);
+
  
   return (
     <div>

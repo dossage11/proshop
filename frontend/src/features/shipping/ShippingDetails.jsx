@@ -7,10 +7,17 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import useProductStore from '../../store/productStore';
 import { getCountryCodeByName } from '../../utils/helpers'
 import CheckoutSteps from '../../components/CheckoutSteps'
+import { useNavigate } from 'react-router-dom'
+
 function ShippingDetails() {
  
 
+
+
+
    const {AddShippingAddress,shippingAddress} = useProductStore();
+
+   const navigate = useNavigate();
 
    const defaultShippingValues = shippingAddress?.[0] ? {
   address: shippingAddress[0].address || '',
@@ -44,8 +51,9 @@ const {register,handleSubmit,formState:{errors}}= useForm({resolver:zodResolver(
  
 function handleShippingInformation (data){
 
-AddShippingAddress(data);
- 
+ AddShippingAddress(data);
+
+navigate("/payment");
 }
 
 
