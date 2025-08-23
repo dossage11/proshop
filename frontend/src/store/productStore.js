@@ -11,6 +11,7 @@ const useProductStore = create(
       totalCartPrice:0,
       selectedItemList:[],
       shippingAddress: [],
+      paymentMethod:'',
       addProduct: (product) => {
         set((state) => {
           const updateProducts = [...state.products, product];
@@ -88,13 +89,18 @@ removeProduct: (name) => {
         }
       });
   },
- AddShippingAddress: (address) => {
-  if (!address) return;
-  
-  set(() => ({ shippingAddress: [address] }));
-  // Optionally, you can show a success message
-  toast.success('Shipping address updated');
-},
+      AddShippingAddress: (address) => {
+        if (!address) return;
+        
+        set(() => ({ shippingAddress: [address] }));
+        // Optionally, you can show a success message
+        toast.success('Shipping address updated');
+      },
+
+      
+      PaymentMethod:(method)=>{
+        set(() => ({ paymentMethod: method }));
+      },
 
 
   
@@ -140,7 +146,8 @@ removeProduct: (name) => {
        partialize: (state) => ({ 
         products: state.products,
         selectedItemList: state.selectedItemList,
-        shippingAddress: state.shippingAddress 
+        shippingAddress: state.shippingAddress,
+        paymentMethod: state.paymentMethod 
       }),
     }
   )
