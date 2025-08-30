@@ -12,6 +12,7 @@ import ProtectedRoute from "./ui/ProtectedRoutes"
 import ProfileScreen from "./pages/ProfileScreen"
 import ShippingScreen from "./pages/ShippingScreen"
 import PaymentScreen from "./pages/PaymentScreen"
+import PlaceOrderScreen from "./pages/PlaceOrderScreen"
 
 
 
@@ -36,6 +37,7 @@ function App() {
       <Route path="profile" element={<ProfileScreen/>} />
       <Route path="shipping" element={<ShippingScreen/>}/>
       <Route path="payment" element={<PaymentScreen />} />
+      <Route path="placeorder" element={<PlaceOrderScreen />} />
       <Route path="*" element={<PageNotFound />} />
    
       </Route>

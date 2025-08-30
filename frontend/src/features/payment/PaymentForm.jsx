@@ -3,26 +3,35 @@ import { Button, Card, CardBody, CardHeader, Col, Container, Form, Row } from 'r
 import CheckoutSteps from '../../components/CheckoutSteps'
 import useProductStore from '../../store/productStore'
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 export const PaymentForm = () => {
- const {PaymentMethod} = useProductStore();
+
+  const navigate = useNavigate();
+ const {PaymentMethod,paymentMethod} = useProductStore();
 
  const [payment,setPayment]= useState('')
 
  const handlePaymentMethodChange = (e) => {
-  setPayment(e.target.value);
 
+   PaymentMethod(e.target.value);
  };
+
+
+
 
  const handleSubmit = (e) => {
   e.preventDefault();
 
-  if (!payment) {
+  if (!paymentMethod) {
     toast.error('Please select a payment method');
     return;
   }
-  PaymentMethod(payment);
-  setPayment('');
+  // PaymentMethod(payment);
+ navigate('/placeorder')
  };
+  
+
+
 
   return (
          <Container className='mt-5' >
@@ -44,21 +53,21 @@ export const PaymentForm = () => {
                 <Form.Group>
                   <Form.Check
                     type="radio"
-                    label="Credit Card"
+                    label="PayPal or Credit Card"
                     name="paymentMethod"
-                    id="creditCard"
-                    value="creditCard"
+                    id="PayPal"
+                    value="PayPal"
                     onChange={(e) => handlePaymentMethodChange(e)}
-
-                    
+                    checked={paymentMethod === "PayPal"} 
                   />
                   <Form.Check
                     type="radio"
-                    label="PayPal"
+                    label="Stripe"
                     name="paymentMethod"
-                    id="paypal"
-                    value="paypal"
+                    id="Stripe"
+                    value="Stripe"
                     onChange={(e) => handlePaymentMethodChange(e)}
+                    checked={paymentMethod === "Stripe"}
                   />
                 </Form.Group>
               </Col>
